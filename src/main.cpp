@@ -2,6 +2,7 @@
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "objects.hpp"
 #include "intake.hpp"
+#include "descore.hpp"
 
 void on_center_button() {
 	static bool pressed = false;
@@ -38,6 +39,7 @@ void opcontrol() {
         // standard movement
         chassis.arcade(throttle, rudder);
 		updateIntake();
+		updateDescore();
 
 		// standard wait 10 ms
 		pros::delay(10);  

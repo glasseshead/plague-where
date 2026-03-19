@@ -1,6 +1,11 @@
+// TODO: Replace intakePressed with intakePressed_intaking & intakePressed_outtaking
+
 #include "intake.hpp"
 
 // reset intake values
+
+// was intake toggled just now?
+// no, so it is false
 bool intakePressed = false;
 int intakeState = 0;
 
@@ -8,12 +13,6 @@ void updateIntake() {
     // state = 1: intake
     // state = 2: outtake
     // state = 0: off
-
-    // if button press
-    
-    // was intake toggled just now?
-    // no, so it is false
-    intakePressed = false;
 
     // if x is pressed
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
@@ -70,7 +69,7 @@ void runIntake() {
         case 2:
             intake.move_voltage(-127);
         // off
-            case 0:
+        case 0:
             intake.move_voltage(0);
     }
 }

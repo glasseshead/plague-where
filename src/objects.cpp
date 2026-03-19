@@ -149,3 +149,5 @@ lemlib::Chassis chassis(drivetrain,
                         sensors 
                         // odom
 );
+
+pros::ADIAnalogOut piston ('A');

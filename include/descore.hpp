@@ -2,9 +2,9 @@
 #include "main.h"
 #include "objects.hpp"
 
-// intake state
-extern int intakeState;
+// descore state
+extern int descoreState;
 
 // initializing update and run functions for intake
-void updateIntake();
-void runIntake();
+void updateDescore();
+void runDescore();

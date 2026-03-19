@@ -23,3 +23,6 @@ extern lemlib::OdomSensors sensors;
 // lateral and angular controls
 extern lemlib::ControllerSettings lateral_controller;
 extern lemlib::ControllerSettings angular_controller;
+
+// descore piston
+extern pros::ADIAnalogOut piston;
