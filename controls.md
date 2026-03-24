@@ -6,6 +6,8 @@
 
 **Scoring**: L1 (Hold)
 
+**Trapdoor**: L1 (While scoring)
+
 **Outtake**: L2 (Hold)
 *Click once to activate, click again to deactivate*
 

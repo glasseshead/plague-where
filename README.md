@@ -1,7 +1,7 @@
 # arson_yaay by glasseshead (David Sun)
 Solo programmed TeleOperated (Driver-Controlled) drive for a robot based off of 5776K DV Kiwi Krew
 
-Thanks Zachary, Aakanksh, & Mooncy from 5776K
+Thanks Zachary, Aakanksh, & Mooncy from 5776K; Iris from 5776A; Vidit from 5776E
 
 ## Features
 - ~~Arcade drivetrain with rudder and throttle~~
@@ -20,7 +20,7 @@ Thanks Zachary, Aakanksh, & Mooncy from 5776K
 - ~~Gains and error ranges are zero~~
 
 ## Controls
-- Left Trigger/L1: Score
+- Left Trigger/L1: Score/Trapdoor
 - Left Bumper/L2: Outtake
 - Right Trigger/R1: Intake + Storage
 - Right Bumper/R2: Descore Wing
