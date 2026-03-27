@@ -43,11 +43,9 @@ pros::controller_digital_e_t descoreControl = pros::E_CONTROLLER_DIGITAL_R2;
 pros::controller_digital_e_t matchloaderControl = pros::E_CONTROLLER_DIGITAL_DOWN;
 pros::controller_digital_e_t midGoalControl = pros::E_CONTROLLER_DIGITAL_RIGHT;
 
-
-
 // motor groups
 pros::MotorGroup left_mg({LEFT_MG_0, LEFT_MG_1, LEFT_MG_2}, pros::v5::MotorGears::blue);
-pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_3}, pros::v5::MotorGears::blue);
+pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_2}, pros::v5::MotorGears::blue);
 
 // intake mapping
 pros::Motor intake(INTAKE_MOTOR, pros::v5::MotorGears::blue);
