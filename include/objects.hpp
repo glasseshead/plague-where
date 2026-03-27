@@ -33,8 +33,7 @@ extern pros::adi::AnalogOut descorePiston;
 extern pros::adi::AnalogOut midGoalPiston;
 
 // matchloader pistons
-extern pros::adi::AnalogOut matchLoaderPiston_L;
-extern pros::adi::AnalogOut matchLoaderPiston_R;
+extern pros::adi::AnalogOut matchLoaderPistons;
 
 // trapdoor piston
 extern pros::adi::AnalogOut trapdoorPiston;
@@ -46,6 +45,7 @@ extern pros::controller_digital_e_t intakeControl;
 extern pros::controller_digital_e_t descoreControl;
 extern pros::controller_digital_e_t matchloaderControl;
 extern pros::controller_digital_e_t midGoalControl;
+extern pros::controller_digital_e_t trapdoorControl;
 
 // drivetrain motor ports
 extern std::int8_t LEFT_MG_0;
@@ -74,8 +74,7 @@ extern char MID_GOAL_PISTON;
 extern char TRAPDOOR_PISTON;
 
 // matchloader pistons port
-extern char MATCHLOADER_PISTON_L;
-extern char MATCHLOADER_PISTON_R;
+extern char MATCHLOADER_PISTONS;
 
 // imu port
 extern std::int8_t IMU;

@@ -40,12 +40,10 @@ void runMatchLoader() {
         switch (matchLoaderState) {
             // matchloader down
             case 0:
-                matchLoaderPiston_L.set_value(false);
-                matchLoaderPiston_R.set_value(false);
+                matchLoaderPistons.set_value(false);
             // matchloader up
             case 1:
-                matchLoaderPiston_L.set_value(true);
-                matchLoaderPiston_R.set_value(true);
+                matchLoaderPistons.set_value(true);
         }
     }
 }

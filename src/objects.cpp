@@ -1,6 +1,7 @@
 #include "objects.hpp"
 #include "lemlib/chassis/trackingWheel.hpp"
 #include "pros/adi.hpp"
+#include "pros/misc.h"
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
@@ -21,8 +22,7 @@ std::int8_t SCORE_MOTOR = 0;
 char DESCORE_PISTON = 'A';
 char MID_GOAL_PISTON = 'A';
 char TRAPDOOR_PISTON = 'A';
-char MATCHLOADER_PISTON_L = 'A';
-char MATCHLOADER_PISTON_R = 'A';
+char MATCHLOADER_PISTONS = 'A';
 
 std::int8_t IMU_SENSOR = 0;
 
@@ -34,6 +34,7 @@ std::int8_t IMU_SENSOR = 0;
 // descoreControl = pros::E_CONTROLLER_DIGITAL_R2;
 // matchloaderControl = pros::E_CONTROLLER_DIGITAL_DOWN;
 // midGoalControl = pros::E_CONTROLLER_DIGITAL_RIGHT;
+// trapdoorControl = pros::E_CONTROLLER_DIGITAL_UP;
 
 // controls mapping
 pros::controller_digital_e_t scoreControl = pros::E_CONTROLLER_DIGITAL_L1;
@@ -42,10 +43,15 @@ pros::controller_digital_e_t intakeControl = pros::E_CONTROLLER_DIGITAL_R1;
 pros::controller_digital_e_t descoreControl = pros::E_CONTROLLER_DIGITAL_R2;
 pros::controller_digital_e_t matchloaderControl = pros::E_CONTROLLER_DIGITAL_DOWN;
 pros::controller_digital_e_t midGoalControl = pros::E_CONTROLLER_DIGITAL_RIGHT;
+pros::controller_digital_e_t trapdoorControl = pros::E_CONTROLLER_DIGITAL_UP;
 
-// motor groups
+// motor groups (3WD)
 pros::MotorGroup left_mg({LEFT_MG_0, LEFT_MG_1, LEFT_MG_2}, pros::v5::MotorGears::blue);
 pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_2}, pros::v5::MotorGears::blue);
+
+// motor groups (4WD)
+// pros::MotorGroup left_mg({LEFT_MG_0, LEFT_MG_1, LEFT_MG_2, LEFT_MG_3}, pros::v5::MotorGears::blue);
+// pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_2, RIGHT_MG_3}, pros::v5::MotorGears::blue);
 
 // intake mapping
 pros::Motor intake(INTAKE_MOTOR, pros::v5::MotorGears::blue);
@@ -63,8 +69,7 @@ pros::adi::AnalogOut midGoalPiston (MID_GOAL_PISTON);
 pros::adi::AnalogOut trapdoorPiston (TRAPDOOR_PISTON);
 
 // matchloader piston mapping
-pros::adi::AnalogOut matchLoaderPiston_L (MATCHLOADER_PISTON_L);
-pros::adi::AnalogOut matchLoaderPiston_R (MATCHLOADER_PISTON_R);
+pros::adi::AnalogOut matchLoaderPistons (MATCHLOADER_PISTONS);
 
 // imu mapping
 pros::Imu imu(IMU_SENSOR);
@@ -140,12 +145,12 @@ lemlib::OdomSensors sensors(&vertical_tracking_wheel,
 
 // TODO: Configure your lateral and angular controllers.
 // lateral controller settings
-lemlib::ControllerSettings lateral_controller(0, 
+lemlib::ControllerSettings lateral_controller(2, 
                                               // proportional gain (kP)
                                               0, 
                                               // integral gain (kI)
 
-                                              0, 
+                                              10, 
                                               // derivative gain (kD)
 
                                               0, 
@@ -168,28 +173,28 @@ lemlib::ControllerSettings lateral_controller(0,
 );
 
 // angular controller settings
-lemlib::ControllerSettings angular_controller(0, 
+lemlib::ControllerSettings angular_controller(2, 
                                               // proportional gain (kP)
 
                                               0, 
                                               // integral gain (kI)
 
-                                              0, 
+                                              10, 
                                               // derivative gain (kD)
 
-                                              0, 
+                                              3, 
                                               // anti windup
 
-                                              0, 
+                                              1, 
                                               // small error range (degrees)
 
-                                              0, 
+                                              100, 
                                               // small error range timeout (ms)
 
-                                              0, 
+                                              3, 
                                               // large error range (degrees)
 
-                                              0, 
+                                              500, 
                                               // large error range timeout (ms)
 
                                               0 

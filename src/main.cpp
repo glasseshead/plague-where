@@ -2,6 +2,12 @@
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "objects.hpp"
 #include "tasks.hpp"
+#include "intake.hpp"
+#include "descore.hpp"
+#include "matchloader.hpp"
+#include "midgoal.hpp"
+#include "score.hpp"
+#include "trapdoor.hpp"
 
 void on_center_button() {
 	static bool pressed = false;
@@ -34,7 +40,6 @@ void competition_initialize() {
 }
 
 void autonomous() {
-
 }
 
 void opcontrol() {
@@ -47,6 +52,13 @@ void opcontrol() {
 
         // standard movement
         chassis.arcade(throttle, rudder);
+
+		updateIntake();
+		updateScore();
+		updateDescore();
+		updateMidGoal();
+		updateMatchLoader();
+		updateTrapdoor();
 
 		// standard wait 10 ms
 		pros::delay(10);  

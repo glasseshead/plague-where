@@ -2,5 +2,9 @@
 #include "main.h"
 #include "objects.hpp"
 
-// initializing run function for trapdoor
+// trapdoor state
+extern int trapdoorState;
+
+// initializing update and run functions for trapdoor
+void updateTrapdoor();
 void runTrapdoor();
