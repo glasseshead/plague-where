@@ -46,3 +46,36 @@ extern pros::controller_digital_e_t intakeControl;
 extern pros::controller_digital_e_t descoreControl;
 extern pros::controller_digital_e_t matchloaderControl;
 extern pros::controller_digital_e_t midGoalControl;
+
+// drivetrain motor ports
+extern std::int8_t LEFT_MG_0;
+extern std::int8_t LEFT_MG_1;
+extern std::int8_t LEFT_MG_2;
+extern std::int8_t LEFT_MG_3;
+
+extern std::int8_t RIGHT_MG_0;
+extern std::int8_t RIGHT_MG_1;
+extern std::int8_t RIGHT_MG_2;
+extern std::int8_t RIGHT_MG_3;
+
+// intake motor port
+extern std::int8_t INTAKE_MOTOR;
+
+// score motor port
+extern std::int8_t SCORE_MOTOR;
+
+// descore piston port
+extern char DESCORE_PISTON;
+
+// mid goal piston port
+extern char MID_GOAL_PISTON;
+
+// trapdoor piston port
+extern char TRAPDOOR_PISTON;
+
+// matchloader pistons port
+extern char MATCHLOADER_PISTON_L;
+extern char MATCHLOADER_PISTON_R;
+
+// imu port
+extern std::int8_t IMU;
