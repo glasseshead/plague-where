@@ -1,5 +1,7 @@
 # Plague? Where? by glasseshead (David Sun)
 A solo-programmed VEX V5 TeleOp program based on FTC's LocalizerTest TeleOp program built using LemLib and PROS that's fully customizable for your robot.
+New template program for potential new versions
+Thanks Zachary & Mooncy from 5776K; Aaron from 5776T; Iris from 5776A
 
 ## Features
 - Real-time odometry localizer using IMU and tracking wheels
