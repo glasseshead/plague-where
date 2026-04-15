@@ -21,7 +21,7 @@ extern lemlib::ControllerSettings lateral_controller;
 extern lemlib::ControllerSettings angular_controller;
 
 // pose data accuracy
-extern std::int poseDataAcc;
+extern std::int32_t poseDataAcc;
 
 // controls
 extern pros::controller_digital_e_t scoreControl;

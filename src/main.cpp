@@ -31,11 +31,11 @@ void disabled() {
 }
 
 void competition_initialize() {
-	lemlib::init();
+	chassis.calibrate();
 
 	// zero the current pose
 	chassis.setPose(0, 0, 0);
-	poseA = chassis.getPose();
+	PoseA = chassis.getPose();
 }
 
 void autonomous() {

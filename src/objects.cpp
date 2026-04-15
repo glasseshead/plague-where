@@ -7,7 +7,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // TODO: Configure your pose data accuracy.
 // Defaults to 3
-std::int poseDataAcc = 3;
+std::int32_t poseDataAcc = 3;
 
 // TODO: Configure your ports based on your robot.
 std::int8_t LEFT_MG_0 = 0;
