@@ -2,7 +2,6 @@
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "objects.hpp"
 #include "tasks.hpp"
-#include "intake.hpp"
 #include "streampose.hpp"
 
 void on_center_button() {
