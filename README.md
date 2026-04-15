@@ -1,24 +1,16 @@
-# arson_yaay by glasseshead (David Sun)
-Solo programmed TeleOperated (Driver-Controlled) drive for a robot based off of 5776K DV Kiwi Krew
-
-Thanks Zachary, Aakanksh, & Mooncy from 5776K; Iris from 5776A; Vidit from 5776E
-
-Partially complete documentation below:
-
-https://docs.google.com/document/d/1RQhu_w1ufEY5RgC05x2ohlO6OhAGyMAY3BCKpGnV530/edit?tab=t.0
+# Plague? Where? by glasseshead (David Sun)
+A solo-programmed VEX V5 TeleOp program based on FTC's LocalizerTest TeleOp program built using LemLib and PROS that's fully customizable for your robot.
 
 ## Features
-- ~~Arcade drivetrain with rudder and throttle~~
-- ~~3-state intake (off, intaking, outtaking)~~
-- ~~Storage~~
-- ~~Top score roller~~
-- ~~Mid goal scoring~~
-- ~~Descore piston wing~~
-- ~~Matchloader pistons~~
+- Real-time odometry localizer using IMU and tracking wheels
+- Continuous pose streaming for x, y, and theta
+- Continuous pose streaming with start, current, and delta pose comparison
+- Support for radians and degrees
+- Support for distance error, and heading error
+- Support for sensor calibration
+- High-frequency/Low-flicker telemetry for robot pose data
+- Modifiable data accuracy levels
+- Customizable for your VEX V5 robot
 
 ## Notes
-- ~~Has everything defined except for ports and measurements~~
-- ~~Fresh LemLib project~~
-- ~~Personal GitHub repository~~
-- ~~PID and chassis variables all declared~~
-- ~~Gains and error ranges are zero~~
+- All drivetrain and sensor configurations are currently placeholders and must be set per robot
