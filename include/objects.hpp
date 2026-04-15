@@ -2,12 +2,6 @@
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "pros/adi.hpp"
 
-// intake motor
-extern pros::Motor intake;
-
-// score motor
-extern pros::Motor score;
-
 // drivetrain and chassis
 extern lemlib::Drivetrain drivetrain;
 extern lemlib::Chassis chassis;
@@ -26,17 +20,8 @@ extern lemlib::OdomSensors sensors;
 extern lemlib::ControllerSettings lateral_controller;
 extern lemlib::ControllerSettings angular_controller;
 
-// descore piston
-extern pros::adi::AnalogOut descorePiston;
-
-// mid goal piston
-extern pros::adi::AnalogOut midGoalPiston;
-
-// matchloader pistons
-extern pros::adi::AnalogOut matchLoaderPistons;
-
-// trapdoor piston
-extern pros::adi::AnalogOut trapdoorPiston;
+// pose data accuracy
+extern std::int poseDataAcc;
 
 // controls
 extern pros::controller_digital_e_t scoreControl;
@@ -57,24 +42,6 @@ extern std::int8_t RIGHT_MG_0;
 extern std::int8_t RIGHT_MG_1;
 extern std::int8_t RIGHT_MG_2;
 extern std::int8_t RIGHT_MG_3;
-
-// intake motor port
-extern std::int8_t INTAKE_MOTOR;
-
-// score motor port
-extern std::int8_t SCORE_MOTOR;
-
-// descore piston port
-extern char DESCORE_PISTON;
-
-// mid goal piston port
-extern char MID_GOAL_PISTON;
-
-// trapdoor piston port
-extern char TRAPDOOR_PISTON;
-
-// matchloader pistons port
-extern char MATCHLOADER_PISTONS;
 
 // imu port
 extern std::int8_t IMU;

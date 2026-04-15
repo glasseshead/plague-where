@@ -5,6 +5,10 @@
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
+// TODO: Configure your pose data accuracy.
+// Defaults to 3
+std::int poseDataAcc = 3;
+
 // TODO: Configure your ports based on your robot.
 std::int8_t LEFT_MG_0 = 0;
 std::int8_t LEFT_MG_1 = 0;
@@ -19,15 +23,10 @@ std::int8_t RIGHT_MG_3 = 0;
 std::int8_t INTAKE_MOTOR = 0;
 std::int8_t SCORE_MOTOR = 0;
 
-char DESCORE_PISTON = 'A';
-char MID_GOAL_PISTON = 'A';
-char TRAPDOOR_PISTON = 'A';
-char MATCHLOADER_PISTONS = 'A';
-
 std::int8_t IMU_SENSOR = 0;
 
 // TODO: Configure your controls to your preference.
-// Original Controls:
+// Default Controls:
 // scoreControl = pros::E_CONTROLLER_DIGITAL_L1;
 // outtakeControl = pros::E_CONTROLLER_DIGITAL_L2;
 // intakeControl = pros::E_CONTROLLER_DIGITAL_R1;
@@ -52,24 +51,6 @@ pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_2}, pros::v5::MotorG
 // motor groups (4WD)
 // pros::MotorGroup left_mg({LEFT_MG_0, LEFT_MG_1, LEFT_MG_2, LEFT_MG_3}, pros::v5::MotorGears::blue);
 // pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_2, RIGHT_MG_3}, pros::v5::MotorGears::blue);
-
-// intake mapping
-pros::Motor intake(INTAKE_MOTOR, pros::v5::MotorGears::blue);
-
-// score mapping
-pros::Motor score(SCORE_MOTOR, pros::v5::MotorGears::blue);
-
-// descore piston mapping
-pros::adi::AnalogOut descorePiston (DESCORE_PISTON);
-
-// mid goal piston mapping
-pros::adi::AnalogOut midGoalPiston (MID_GOAL_PISTON);
-
-// trapdoor piston mapping
-pros::adi::AnalogOut trapdoorPiston (TRAPDOOR_PISTON);
-
-// matchloader piston mapping
-pros::adi::AnalogOut matchLoaderPistons (MATCHLOADER_PISTONS);
 
 // imu mapping
 pros::Imu imu(IMU_SENSOR);
