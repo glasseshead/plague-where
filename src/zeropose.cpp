@@ -40,14 +40,22 @@ void runZeroPose() {
             // pose not zeroed
             case 0:
                 zeroingPoseA = false;
+                break;
             // pose zeroed
             case 1:
                 zeroingPoseA = true;
                 chassis.setPose(0, 0, 0);
-                std::ofstream outputFile("raw_poses.txt");
-                outputFile << "ZEROED POSE" << currPoseX << std::endl;
+
+                std::ofstream outputFile("raw_poses.txt", std::ios::trunc);
+                outputFile << "ZEROED POSE " << currPoseX << std::endl;
                 outputFile.close();
+
+                outputFile.open("m2pose_poses.txt", std::ios::trunc);
+                outputFile << "ZEROED POSE " << currPoseX << std::endl;
+                outputFile.close();
+
                 PoseA = chassis.getPose();
+                break;
         }
     }
 }

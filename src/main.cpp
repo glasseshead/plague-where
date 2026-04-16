@@ -5,6 +5,8 @@
 #include "streampose.hpp"
 #include "updatepose.hpp"
 #include "zeropose.hpp"
+#include "clearfile.hpp"
+#include "capturepoint.hpp"
 
 void on_center_button() {
 	static bool pressed = false;
@@ -47,6 +49,9 @@ void opcontrol() {
 	while (true) {
 		updatePose();
 		updateZeroPoseA();
+		updateCapturePoint();
+		updateCapturePoint();
+		updateAdvancedCapturePoint();
 
 		// for those who aren't familiar with aircraft controls:
 		// throttle is forward power

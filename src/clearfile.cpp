@@ -42,12 +42,17 @@ void runClearFile() {
             // file not clearing
             case 0:
                 clearingFile = false;
+                break;
             // file clearing
             case 1:
                 clearingFile = true;
-                std::ofstream outputFile("raw_poses.txt", std::ios::trunc); 
+                std::ofstream outputFile("raw_poses.txt", std::ios::trunc);
+                outputFile.close();
+
+                outputFile.open("m2pose_poses.txt", std::ios::trunc);
                 outputFile.close();
                 clearFileState = 0;
+                break;
         }
     }
 }

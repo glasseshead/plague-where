@@ -28,13 +28,15 @@ std::int8_t IMU_SENSOR = 0;
 // TODO: Configure your controls to your preference.
 // Default Controls:
 // zeroPoseA = L1;
-// capturePoint = L2;
-// clearFile = R2;
+// clearFile = L2;
+// capturePointPrimitive = R1;
+// capturePointAdvanced = R2;
 
 // controls mapping
 pros::controller_digital_e_t CONTROL_zeroPoseA = pros::E_CONTROLLER_DIGITAL_L1;
-pros::controller_digital_e_t CONTROL_capturePoint = pros::E_CONTROLLER_DIGITAL_L2;
-pros::controller_digital_e_t CONTROL_clearFile = pros::E_CONTROLLER_DIGITAL_R2;
+pros::controller_digital_e_t CONTROL_clearFile = pros::E_CONTROLLER_DIGITAL_L2;
+pros::controller_digital_e_t CONTROL_capturePoint = pros::E_CONTROLLER_DIGITAL_R1;
+pros::controller_digital_e_t CONTROL_advancedCapturePoint = pros::E_CONTROLLER_DIGITAL_R2;
 
 // motor groups (3WD)
 pros::MotorGroup left_mg({LEFT_MG_0, LEFT_MG_1, LEFT_MG_2}, pros::v5::MotorGears::blue);

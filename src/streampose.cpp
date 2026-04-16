@@ -52,6 +52,7 @@ void streamPose() {
 
 		std::cout << "zeroing poseA: " << (zeroingPoseA ? "true" : "false") << std::endl;
 		std::cout << "clearing file: " << (clearingFile ? "true" : "false") << std::endl;
-		std::cout << "capturing poseB: " << (capturingPoint ? "true" : "false") << std::endl;
+		std::cout << "capturing poseB (primitive): " << (capturingPoint ? "true" : "false") << std::endl;
+		std::cout << "capturing poseB (advanced): " << (advancedCapturingPoint ? "true" : "false") << std::endl;
     }
 }

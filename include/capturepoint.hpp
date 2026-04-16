@@ -8,6 +8,12 @@ extern bool capturePointPressed;
 extern int capturePointState;
 extern bool capturingPoint;
 
+extern bool advancedCapturePointPressed;
+extern int advancedCapturePointState;
+extern bool advancedCapturingPoint;
+
 // initializing update and run functions for capture point
 void updateCapturePoint();
 void runCapturePoint();
+void updateAdvancedCapturePoint();
+void runAdvancedCapturePoint();
