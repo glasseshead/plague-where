@@ -44,6 +44,9 @@ void runZeroPose() {
             case 1:
                 zeroingPoseA = true;
                 chassis.setPose(0, 0, 0);
+                std::ofstream outputFile("raw_poses.txt");
+                outputFile << "ZEROED POSE" << currPoseX << std::endl;
+                outputFile.close();
                 PoseA = chassis.getPose();
         }
     }

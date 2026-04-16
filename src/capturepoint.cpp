@@ -50,7 +50,7 @@ void runCapturePoint() {
                            << " y: " << currPoseY
                            << " theta (rad): " << currPoseThetaRad
                            << " theta (deg): " << currPoseThetaDeg
-                ;
+                           << std::endl;
                 outputFile.close();
                 capturePointState = 0;
         }
