@@ -3,6 +3,8 @@
 #include "objects.hpp"
 #include "tasks.hpp"
 #include "streampose.hpp"
+#include "updatepose.hpp"
+#include "zeropose.hpp"
 
 void on_center_button() {
 	static bool pressed = false;
@@ -44,47 +46,16 @@ void autonomous() {
 void opcontrol() {
 	while (true) {
 		updatePose();
+		updateZeroPoseA();
 
-		// ANSI escape code for cls
-		// endl for better real time logging
-		std::cout << "\033[H";
+		// for those who aren't familiar with aircraft controls:
+		// throttle is forward power
+		// rudder is your yaw/turn
+		int throttle = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        int rudder = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
-		// each pose data comes with 3 decimal precision default. 
-		// if you want to, you can tune it in objects.cpp
-		std::cout << std::fixed << std::setprecision(poseDataAcc);
-
-		std::cout << "        Start Pose        " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "x: " << startPoseX
-         		  << ", y: " << startPoseY
-          		  << ", theta (radians): " << startPoseThetaRad
-          		  << ", theta (degrees): " << startPoseThetaDeg
-        		  << std::endl;
-
-		std::cout << "       Current Pose       " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "x: " << currPoseX
-         		  << ", y: " << currPoseY
-          		  << ", theta (radians): " << currPoseThetaRad
-          		  << ", theta (degrees): " << currPoseThetaDeg
-        		  << std::endl;
-
-		std::cout << "        Difference        " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "x: " << diffPoseX
-         		  << ", y: " << diffPoseY
-          		  << ", theta (radians): " << diffPoseThetaRad
-          		  << ", theta (degrees): " << diffPoseThetaDeg
-        		  << std::endl;
-		
-		std::cout << "     Additional Data      " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "distance error: " << distanceError << std::endl;
-		std::cout << "heading error: " << headingError << std::endl;
+        // standard movement
+        chassis.arcade(throttle, rudder);
 
 		// standard wait 10 ms
 		pros::delay(10);  

@@ -24,13 +24,7 @@ extern lemlib::ControllerSettings angular_controller;
 extern std::int32_t poseDataAcc;
 
 // controls
-extern pros::controller_digital_e_t scoreControl;
-extern pros::controller_digital_e_t outtakeControl;
-extern pros::controller_digital_e_t intakeControl;
-extern pros::controller_digital_e_t descoreControl;
-extern pros::controller_digital_e_t matchloaderControl;
-extern pros::controller_digital_e_t midGoalControl;
-extern pros::controller_digital_e_t trapdoorControl;
+extern pros::controller_digital_e_t CONTROL_zeroPoseA;
 
 // drivetrain motor ports
 extern std::int8_t LEFT_MG_0;
@@ -45,3 +39,30 @@ extern std::int8_t RIGHT_MG_3;
 
 // imu port
 extern std::int8_t IMU;
+
+// pose variables
+extern lemlib::Pose PoseA;
+extern lemlib::Pose PoseB;
+extern lemlib::Pose poseD;
+
+// pose pos variables
+extern double startPoseX;
+extern double startPoseY;
+extern double startPoseThetaRad;
+extern double startPoseThetaDeg;
+
+extern double currPoseX;
+extern double currPoseY;
+extern double currPoseThetaRad;
+extern double currPoseThetaDeg;
+
+extern double diffPoseX;
+extern double diffPoseY;
+extern double diffPoseThetaRad;
+extern double diffPoseThetaDeg;
+
+// distance error
+extern double distanceError;
+
+// heading error
+extern double headingError;

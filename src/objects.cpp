@@ -27,22 +27,10 @@ std::int8_t IMU_SENSOR = 0;
 
 // TODO: Configure your controls to your preference.
 // Default Controls:
-// scoreControl = pros::E_CONTROLLER_DIGITAL_L1;
-// outtakeControl = pros::E_CONTROLLER_DIGITAL_L2;
-// intakeControl = pros::E_CONTROLLER_DIGITAL_R1;
-// descoreControl = pros::E_CONTROLLER_DIGITAL_R2;
-// matchloaderControl = pros::E_CONTROLLER_DIGITAL_DOWN;
-// midGoalControl = pros::E_CONTROLLER_DIGITAL_RIGHT;
-// trapdoorControl = pros::E_CONTROLLER_DIGITAL_UP;
+// zeroPoseA = L1;
 
 // controls mapping
-pros::controller_digital_e_t scoreControl = pros::E_CONTROLLER_DIGITAL_L1;
-pros::controller_digital_e_t outtakeControl = pros::E_CONTROLLER_DIGITAL_L2;
-pros::controller_digital_e_t intakeControl = pros::E_CONTROLLER_DIGITAL_R1;
-pros::controller_digital_e_t descoreControl = pros::E_CONTROLLER_DIGITAL_R2;
-pros::controller_digital_e_t matchloaderControl = pros::E_CONTROLLER_DIGITAL_DOWN;
-pros::controller_digital_e_t midGoalControl = pros::E_CONTROLLER_DIGITAL_RIGHT;
-pros::controller_digital_e_t trapdoorControl = pros::E_CONTROLLER_DIGITAL_UP;
+pros::controller_digital_e_t CONTROL_zeroPoseA = pros::E_CONTROLLER_DIGITAL_L1;
 
 // motor groups (3WD)
 pros::MotorGroup left_mg({LEFT_MG_0, LEFT_MG_1, LEFT_MG_2}, pros::v5::MotorGears::blue);
@@ -54,6 +42,32 @@ pros::MotorGroup right_mg({RIGHT_MG_0, RIGHT_MG_1, RIGHT_MG_2}, pros::v5::MotorG
 
 // imu mapping
 pros::Imu imu(IMU_SENSOR);
+
+// pose data
+
+// calibrate poses
+lemlib::Pose PoseA(0, 0, 0);
+lemlib::Pose PoseB(0, 0, 0);
+
+// reset all pose values
+double startPoseX = 0;
+double startPoseY = 0;
+double startPoseThetaRad = 0;
+double startPoseThetaDeg = 0;
+
+double currPoseX = 0;
+double currPoseY = 0;
+double currPoseThetaRad = 0;
+double currPoseThetaDeg = 0;
+
+double diffPoseX = 0;
+double diffPoseY = 0;
+double diffPoseThetaRad = 0;
+double diffPoseThetaDeg = 0;
+
+// reset misc values
+double distanceError = 0;
+double headingError = 0;
 
 // TODO: Configure your drivetrain settings.
 // drivetrain mapping

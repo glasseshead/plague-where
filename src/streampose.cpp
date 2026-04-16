@@ -1,63 +1,53 @@
 #include "streampose.hpp"
+#include "zeropose.hpp"
+#include "updatepose.hpp"
 
-// calibrate poses
-lemlib::Pose PoseA(0, 0, 0);
-lemlib::Pose PoseB(0, 0, 0);
+void streamPose() {
+    while (true) {
+		// ANSI escape code for cls
+		// endl for better real time logging
+		std::cout << "\033[H";
 
-// reset all pose values
-double startPoseX = 0;
-double startPoseY = 0;
-double startPoseThetaRad = 0;
-double startPoseThetaDeg = 0;
+		// each pose data comes with 3 decimal precision default. 
+		// if you want to, you can tune it in objects.cpp
+		std::cout << std::fixed << std::setprecision(poseDataAcc);
 
-double currPoseX = 0;
-double currPoseY = 0;
-double currPoseThetaRad = 0;
-double currPoseThetaDeg = 0;
+		std::cout << "        Start Pose        " << std::endl;
+		std::cout << "--------------------------" << std::endl;
 
-double diffPoseX = 0;
-double diffPoseY = 0;
-double diffPoseThetaRad = 0;
-double diffPoseThetaDeg = 0;
+		std::cout << "x: " << startPoseX
+         		  << ", y: " << startPoseY
+          		  << ", theta (radians): " << startPoseThetaRad
+          		  << ", theta (degrees): " << startPoseThetaDeg
+        		  << std::endl;
 
-// reset misc values
-double distanceError = 0;
-double headingError = 0;
+		std::cout << "       Current Pose       " << std::endl;
+		std::cout << "--------------------------" << std::endl;
 
-void updatePose() {
-    // current Pose
-    PoseB = chassis.getPose();
+		std::cout << "x: " << currPoseX
+         		  << ", y: " << currPoseY
+          		  << ", theta (radians): " << currPoseThetaRad
+          		  << ", theta (degrees): " << currPoseThetaDeg
+        		  << std::endl;
 
-    // set values for start Poses A
-    startPoseX = PoseA.x;
-    startPoseY = PoseA.y;
-    startPoseThetaRad = PoseA.theta;
-    startPoseThetaDeg = PoseA.theta * 180.0 / M_PI;
+		std::cout << "        Difference        " << std::endl;
+		std::cout << "--------------------------" << std::endl;
 
-    // set values for current Poses B
-    currPoseX = PoseB.x;
-    currPoseY = PoseB.y;
-    currPoseThetaRad = PoseB.theta;
-    currPoseThetaDeg = PoseB.theta * 180.0 / M_PI;
+		std::cout << "x: " << diffPoseX
+         		  << ", y: " << diffPoseY
+          		  << ", theta (radians): " << diffPoseThetaRad
+          		  << ", theta (degrees): " << diffPoseThetaDeg
+        		  << std::endl;
+		
+		std::cout << "     Additional Data      " << std::endl;
+		std::cout << "--------------------------" << std::endl;
 
-    // difference Pose
-    lemlib::Pose PoseD = PoseA - PoseB;
-    currPoseX = PoseD.x;
-    currPoseY = PoseD.y;
-    currPoseThetaRad = PoseD.theta;
-    currPoseThetaDeg = PoseD.theta * 180.0 / M_PI;
+		std::cout << "distance error: " << distanceError << std::endl;
+		std::cout << "heading error: " << headingError << std::endl;
 
-    // distance error
-    distanceError = PoseA.distance(PoseB);
+        std::cout << "         Toggles          " << std::endl;
+		std::cout << "--------------------------" << std::endl;
 
-    // heading error
-    headingError = PoseA.theta - PoseB.theta;
-
-    while (headingError > M_PI) {
-        headingError -= 2 * M_PI;
-    }
-
-    while (headingError < -M_PI) {
-        headingError += 2 * M_PI;
+		std::cout << "zeroing poseA: " << (zeroingPoseA ? "true" : "false") << std::endl;
     }
 }
