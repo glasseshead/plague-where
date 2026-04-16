@@ -6,6 +6,7 @@
 // no, so it is false
 bool clearFilePressed = false;
 int clearFileState = 0;
+bool clearingFile = false;
 
 void updateClearFile() {
     // state = 0: not clearing
@@ -40,13 +41,13 @@ void runClearFile() {
         switch (clearFileState) {
             // file not clearing
             case 0:
-                break;
+                clearingFile = false;
             // file clearing
             case 1:
+                clearingFile = true;
                 std::ofstream outputFile("raw_poses.txt", std::ios::trunc); 
                 outputFile.close();
                 clearFileState = 0;
-                clearFilePressed = true;
         }
     }
 }

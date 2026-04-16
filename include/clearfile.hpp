@@ -6,6 +6,7 @@
 
 extern bool clearFilePressed;
 extern int clearFileState;
+extern bool clearingFile;
 
 // initializing update and run functions for clear file
 void updateClearFile();

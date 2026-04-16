@@ -1,5 +1,7 @@
 #include "streampose.hpp"
 #include "zeropose.hpp"
+#include "capturepoint.hpp"
+#include "clearfile.hpp"
 #include "updatepose.hpp"
 
 void streamPose() {
@@ -49,5 +51,7 @@ void streamPose() {
 		std::cout << "--------------------------" << std::endl;
 
 		std::cout << "zeroing poseA: " << (zeroingPoseA ? "true" : "false") << std::endl;
+		std::cout << "clearing file: " << (clearingFile ? "true" : "false") << std::endl;
+		std::cout << "capturing poseB: " << (capturingPoint ? "true" : "false") << std::endl;
     }
 }
