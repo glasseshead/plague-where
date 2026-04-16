@@ -25,6 +25,7 @@ extern std::int32_t poseDataAcc;
 
 // controls
 extern pros::controller_digital_e_t CONTROL_zeroPoseA;
+extern pros::controller_digital_e_t CONTROL_clearFile;
 
 // drivetrain motor ports
 extern std::int8_t LEFT_MG_0;
