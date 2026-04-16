@@ -6,53 +6,48 @@
 
 void streamPose() {
     while (true) {
-		// ANSI escape code for cls
-		// endl for better real time logging
-		std::cout << "\033[H";
+        pros::lcd::set_text(0, "Plague? Where?");
 
-		// each pose data comes with 3 decimal precision default. 
-		// if you want to, you can tune it in objects.cpp
-		std::cout << std::fixed << std::setprecision(poseDataAcc);
+        // Start pose
+        pros::lcd::set_text(
+            1,
+            "Sx:" + std::to_string(startPoseX) +
+            " Sy:" + std::to_string(startPoseY) +
+            " St:" + std::to_string(startPoseThetaDeg)
+        );
 
-		std::cout << "        Start Pose        " << std::endl;
-		std::cout << "--------------------------" << std::endl;
+        // Current pose
+        pros::lcd::set_text(
+            2,
+            "Cx:" + std::to_string(currPoseX) +
+            " Cy:" + std::to_string(currPoseY) +
+            " Ct:" + std::to_string(currPoseThetaDeg)
+        );
 
-		std::cout << "x: " << startPoseX
-         		  << ", y: " << startPoseY
-          		  << ", theta (radians): " << startPoseThetaRad
-          		  << ", theta (degrees): " << startPoseThetaDeg
-        		  << std::endl;
+        // Difference
+        pros::lcd::set_text(
+            3,
+            "Dx:" + std::to_string(diffPoseX) +
+            " Dy:" + std::to_string(diffPoseY) +
+            " Dt:" + std::to_string(diffPoseThetaDeg)
+        );
 
-		std::cout << "       Current Pose       " << std::endl;
-		std::cout << "--------------------------" << std::endl;
+		// Errors
+        pros::lcd::set_text(
+            4,
+            " dErr:" + std::to_string(distanceError) +
+            " hErr:" + std::to_string(headingError)
+        );
 
-		std::cout << "x: " << currPoseX
-         		  << ", y: " << currPoseY
-          		  << ", theta (radians): " << currPoseThetaRad
-          		  << ", theta (degrees): " << currPoseThetaDeg
-        		  << std::endl;
+        // Toggles
+        pros::lcd::set_text(
+            5,
+            std::string("ZpA") + (zeroingPoseA ? "1" : "0") +
+            " Clr:" + (clearingFile ? "1" : "0") +
+            " CpP:" + (capturingPoint ? "1" : "0") +
+            " CpA:" + (advancedCapturingPoint ? "1" : "0")
+        );
 
-		std::cout << "        Difference        " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "x: " << diffPoseX
-         		  << ", y: " << diffPoseY
-          		  << ", theta (radians): " << diffPoseThetaRad
-          		  << ", theta (degrees): " << diffPoseThetaDeg
-        		  << std::endl;
-		
-		std::cout << "     Additional Data      " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "distance error: " << distanceError << std::endl;
-		std::cout << "heading error: " << headingError << std::endl;
-
-        std::cout << "         Toggles          " << std::endl;
-		std::cout << "--------------------------" << std::endl;
-
-		std::cout << "zeroing poseA: " << (zeroingPoseA ? "true" : "false") << std::endl;
-		std::cout << "clearing file: " << (clearingFile ? "true" : "false") << std::endl;
-		std::cout << "capturing poseB (primitive): " << (capturingPoint ? "true" : "false") << std::endl;
-		std::cout << "capturing poseB (advanced): " << (advancedCapturingPoint ? "true" : "false") << std::endl;
+        pros::delay(50);
     }
 }

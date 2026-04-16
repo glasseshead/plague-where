@@ -46,13 +46,17 @@ void runZeroPose() {
                 zeroingPoseA = true;
                 chassis.setPose(0, 0, 0);
 
-                std::ofstream outputFile("raw_poses.txt", std::ios::trunc);
-                outputFile << "ZEROED POSE " << currPoseX << std::endl;
-                outputFile.close();
+                FILE* raw_file = fopen("/usd/raw_poses.txt", "a");
+                if (raw_file != NULL) {
+                    fprintf(raw_file, "ZEROED POSE\n");
+                    fclose(raw_file);
+                }
 
-                outputFile.open("m2pose_poses.txt", std::ios::trunc);
-                outputFile << "ZEROED POSE " << currPoseX << std::endl;
-                outputFile.close();
+                FILE* m2_file = fopen("/usd/m2pose_poses.txt", "a");
+                if (m2_file != NULL) {
+                    fprintf(m2_file, "ZEROED POSE\n");
+                    fclose(m2_file);
+                }
 
                 PoseA = chassis.getPose();
                 break;

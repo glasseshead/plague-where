@@ -46,11 +46,17 @@ void runClearFile() {
             // file clearing
             case 1:
                 clearingFile = true;
-                std::ofstream outputFile("raw_poses.txt", std::ios::trunc);
-                outputFile.close();
 
-                outputFile.open("m2pose_poses.txt", std::ios::trunc);
-                outputFile.close();
+                FILE* raw_file = fopen("/usd/raw_poses.txt", "w");
+                if (raw_file != NULL) {
+                    fclose(raw_file);
+                }
+
+                FILE* m2_file = fopen("/usd/m2pose_poses.txt", "w");
+                if (m2_file != NULL) {
+                    fclose(m2_file);
+                }
+
                 clearFileState = 0;
                 break;
         }

@@ -76,13 +76,21 @@ void runCapturePoint() {
             // point capturing
             case 1:
                 capturingPoint = true;
-                std::ofstream outputFile("raw_poses.txt");
-                outputFile << "x: " << currPoseX
-                           << " y: " << currPoseY
-                           << " theta (rad): " << currPoseThetaRad
-                           << " theta (deg): " << currPoseThetaDeg
-                           << std::endl;
-                outputFile.close();
+
+                FILE* usd_file_write = fopen("/usd/raw_poses.txt", "a"); // append mode
+
+                if (usd_file_write != NULL) {
+                    fprintf(usd_file_write,
+                        "x: %f y: %f theta (rad): %f theta (deg): %f\n",
+                        currPoseX,
+                        currPoseY,
+                        currPoseThetaRad,
+                        currPoseThetaDeg
+                    );
+
+                    fclose(usd_file_write);
+                }
+
                 capturePointState = 0;
         }
     }
@@ -95,17 +103,26 @@ void runAdvancedCapturePoint() {
             // point not capturing
             case 0:
                 advancedCapturingPoint = false;
+                break;
             // point capturing
             case 1:
                 advancedCapturingPoint = true;
-                std::ofstream outputFile("raw_poses.txt");
-                outputFile << "chassis.moveToPose(" << currPoseX
-                           << " ,  " << currPoseY
-                           << " , " << currPoseThetaDeg
-                           << " , TIMEOUT);"
-                           << std::endl;
-                outputFile.close();
+
+                FILE* usd_file_write = fopen("/usd/m2pose_poses.txt", "a");
+
+                if (usd_file_write != NULL) {
+                    fprintf(usd_file_write,
+                        "chassis.moveToPose(%f , %f , %f , TIMEOUT);\n",
+                        currPoseX,
+                        currPoseY,
+                        currPoseThetaDeg
+                    );
+
+                    fclose(usd_file_write);
+                }
+
                 advancedCapturePointState = 0;
+                break;
         }
     }
 }
