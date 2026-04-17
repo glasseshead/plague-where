@@ -6,10 +6,11 @@
 #include "clearfile.hpp"
 #include "capturepoint.hpp"
 
+// initialize tasks
 void initTasks() {
     pros::Task streamPoseTask(streamPose, "stream pose task");
     pros::Task runZeroPoseTask(runZeroPose, "zero pose task");
     pros::Task runClearFileTask(runClearFile, "clear file task");
-    pros::Task runCapturePointTask(runCapturePoint, "run capture point task");
-    pros::Task runAdvancedCapturePointTask(runAdvancedCapturePoint, "run capture point task");
+    pros::Task runPrimitiveCapturePointTask(runPrimitiveCapturePoint, "run primitive capture point task");
+    pros::Task runAdvancedCapturePointTask(runAdvancedCapturePoint, "run advanced capture point task");
 }

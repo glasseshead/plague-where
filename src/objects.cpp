@@ -56,16 +56,19 @@ lemlib::Pose PoseA(0, 0, 0);
 lemlib::Pose PoseB(0, 0, 0);
 
 // reset all pose values
+// start pose (poseA)
 double startPoseX = 0;
 double startPoseY = 0;
 double startPoseThetaRad = 0;
 double startPoseThetaDeg = 0;
 
+// current pose (poseB)
 double currPoseX = 0;
 double currPoseY = 0;
 double currPoseThetaRad = 0;
 double currPoseThetaDeg = 0;
 
+// delta pose (poseD)
 double diffPoseX = 0;
 double diffPoseY = 0;
 double diffPoseThetaRad = 0;

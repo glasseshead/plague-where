@@ -6,6 +6,8 @@
 // no, so it is false
 bool clearFilePressed = false;
 int clearFileState = 0;
+
+// setting clearing file state for toggle output to off
 bool clearingFile = false;
 
 void updateClearFile() {
@@ -41,22 +43,34 @@ void runClearFile() {
         switch (clearFileState) {
             // file not clearing
             case 0:
+                // we are currently not clearing file so it's false
                 clearingFile = false;
                 break;
+
             // file clearing
             case 1:
+                // we are currently clearing file so it's true
                 clearingFile = true;
 
+                // open file in append mode
                 FILE* raw_file = fopen("/usd/raw_poses.txt", "w");
+
+                // if file is valid
                 if (raw_file != NULL) {
+                    // clear file by close method
                     fclose(raw_file);
                 }
 
+                // open file in append mode
                 FILE* m2_file = fopen("/usd/m2pose_poses.txt", "w");
+
+                // if file is valid
                 if (m2_file != NULL) {
+                    // clear file by close method
                     fclose(m2_file);
                 }
 
+                // to set clearFileState returner to false in the switch case
                 clearFileState = 0;
                 break;
         }

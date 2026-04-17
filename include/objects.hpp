@@ -49,16 +49,19 @@ extern lemlib::Pose PoseB;
 extern lemlib::Pose poseD;
 
 // pose pos variables
+// start pose (poseA)
 extern double startPoseX;
 extern double startPoseY;
 extern double startPoseThetaRad;
 extern double startPoseThetaDeg;
 
+// current pose (poseB)
 extern double currPoseX;
 extern double currPoseY;
 extern double currPoseThetaRad;
 extern double currPoseThetaDeg;
 
+// delta pose (poseD)
 extern double diffPoseX;
 extern double diffPoseY;
 extern double diffPoseThetaRad;

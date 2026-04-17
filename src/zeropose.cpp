@@ -4,6 +4,8 @@
 // no, so it is false
 bool zeroPoseAPressed = false;
 int zeroPoseAState = 0;
+
+// setting zeroing starting position (poseA) state for toggle output to off
 bool zeroingPoseA = false;
 
 void updateZeroPoseA() {
@@ -39,26 +41,43 @@ void runZeroPose() {
         switch (zeroPoseAState) {
             // pose not zeroed
             case 0:
+                // we are currently not zeroing starting pose (poseA) so it's false
                 zeroingPoseA = false;
                 break;
+
             // pose zeroed
             case 1:
+                // we are currently zeroing starting pose (poseA) so it's true
                 zeroingPoseA = true;
+                
+                // zeroing pose
                 chassis.setPose(0, 0, 0);
 
+                // open file in append mode
                 FILE* raw_file = fopen("/usd/raw_poses.txt", "a");
+
+                // if file is valid
                 if (raw_file != NULL) {
+                    // write that file is zeroed (primitive)
                     fprintf(raw_file, "ZEROED POSE\n");
                     fclose(raw_file);
                 }
 
+                // open file in append mode
                 FILE* m2_file = fopen("/usd/m2pose_poses.txt", "a");
+                
+                // if file is valid
                 if (m2_file != NULL) {
-                    fprintf(m2_file, "ZEROED POSE\n");
+                    // write code for zero position (advanced)
+                    fprintf(m2_file, "chassis.setPose(0, 0, 0);\n");
                     fclose(m2_file);
                 }
-
+                
+                // set poseA to (0, 0, 0)
                 PoseA = chassis.getPose();
+
+                // to set zeroingPoseAState returner to false in the switch case
+                zeroPoseAState = 0;
                 break;
         }
     }

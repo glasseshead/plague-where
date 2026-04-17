@@ -27,6 +27,7 @@ void initialize() {
 
 	pros::lcd::register_btn1_cb(on_center_button);
 
+	// initalize tasks
 	initTasks();
 }
 
@@ -35,6 +36,7 @@ void disabled() {
 }
 
 void competition_initialize() {
+	// calibrate chassis when match starts but not auton
 	chassis.calibrate();
 
 	// zero the current pose
@@ -47,12 +49,20 @@ void autonomous() {
 
 void opcontrol() {
 	while (true) {
+		// update functions
 		updatePose();
 		updateZeroPoseA();
-		updateCapturePoint();
-		updateCapturePoint();
+		updateClearFile();
+		updatePrimitiveCapturePoint();
 		updateAdvancedCapturePoint();
 
+
+		// this is here if you want to drive the robot whlie you're 
+		// capturing positions, so it's easier. your driver can also
+		// capture positions for you.
+		// uncomment to enable functionality (off by default)
+
+		/*
 		// for those who aren't familiar with aircraft controls:
 		// throttle is forward power
 		// rudder is your yaw/turn
@@ -61,6 +71,7 @@ void opcontrol() {
 
         // standard movement
         chassis.arcade(throttle, rudder);
+		*/
 
 		// standard wait 10 ms
 		pros::delay(10);  

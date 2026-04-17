@@ -2,50 +2,56 @@
 #include "objects.hpp"
 #include "capturepoint.hpp"
 
-// was clear file toggled just now?
+// was primitive capture point toggled just now?
 // no, so it is false
-bool capturePointPressed = false;
-int capturePointState = 0;
-bool capturingPoint = false;
+bool primitiveCapturePointPressed = false;
+int primitiveCapturePointState = 0;
 
-bool advancedCapturePointPressed = false;
+// setting primitive capturing point state for toggle output to off
+bool primitveCapturingPoint = false;
+
+// was advanced capture point toggled just now?
+// no, so it is false
+bool advancedCapturingPoint = false;
 int advancedCapturePointState = 0;
+
+// setting advanced capturing point state for toggle output to off
 bool advancedCapturingPoint = false;
 
-void updateCapturePoint() {
-    // state = 0: not capturing
-    // state = 1: capturing
+void updatePrimitiveCapturePoint() {
+    // state = 0: not capturing (primitive)
+    // state = 1: capturing (primitive)
 
     // if capture point control is pressed
     if (controller.get_digital(CONTROL_capturePoint)) {
-        if (!capturePointPressed) {
+        if (!primitiveCapturePointPressed) {
             // if toggled to not capturing, turn it to capturing
-            if(capturePointState == 0) {
-                capturePointState = 1;
+            if(primitiveCapturePointState == 0) {
+                primitiveCapturePointState = 1;
             }
 
             // if toggled to capturing, turn it to not capturing
             else {
-                capturePointState = 0;
+                primitiveCapturePointState = 0;
             }
         }
         // capture point to file was just toggled now
-        capturePointPressed = true;
+        primitiveCapturePointPressed = true;
 
     } 
     // capture point to file was not toggled just now
     else {
-        capturePointPressed = false;
+        primitiveCapturePointPressed = false;
     }
 }
 
 void updateAdvancedCapturePoint() {
-    // state = 0: not capturing
-    // state = 1: capturing
+    // state = 0: not capturing (advanced)
+    // state = 1: capturing (advanced)
 
     // if capture point control is pressed
     if (controller.get_digital(CONTROL_advancedCapturePoint)) {
-        if (!advancedCapturePointPressed) {
+        if (!advancedCapturingPoint) {
             // if toggled to not capturing, turn it to capturing
             if(advancedCapturePointState == 0) {
                 advancedCapturePointState = 1;
@@ -57,29 +63,36 @@ void updateAdvancedCapturePoint() {
             }
         }
         // capture point to file was just toggled now
-        advancedCapturePointPressed = true;
+        advancedCapturingPoint = true;
 
     } 
     // capture point to file was not toggled just now
     else {
-        advancedCapturePointPressed = false;
+        advancedCapturingPoint = false;
     }
 }
 
-void runCapturePoint() {
+void runPrimitiveCapturePoint() {
     while (true) {
         // based on our capture point state, we toggle it to on or off
-        switch (capturePointState) {
+        switch (primitiveCapturePointState) {
             // point not capturing
             case 0:
-                capturingPoint = false;
+                // we are currently not capturing point so it's false
+                primitveCapturingPoint = false;
+                break;
+
             // point capturing
             case 1:
-                capturingPoint = true;
+                // we are currently capturing point so it's true
+                primitveCapturingPoint = true;
 
-                FILE* usd_file_write = fopen("/usd/raw_poses.txt", "a"); // append mode
+                // open file in append mode
+                FILE* usd_file_write = fopen("/usd/raw_poses.txt", "a");
 
+                // if file is valid
                 if (usd_file_write != NULL) {
+                    // f-string
                     fprintf(usd_file_write,
                         "x: %f y: %f theta (rad): %f theta (deg): %f\n",
                         currPoseX,
@@ -91,7 +104,9 @@ void runCapturePoint() {
                     fclose(usd_file_write);
                 }
 
-                capturePointState = 0;
+                // to set primitveCapturingPointState returner to false in the switch case
+                primitiveCapturePointState = 0;
+                break;
         }
     }
 }
@@ -104,13 +119,18 @@ void runAdvancedCapturePoint() {
             case 0:
                 advancedCapturingPoint = false;
                 break;
+
             // point capturing
             case 1:
+                // we are currently caputring point so it's true
                 advancedCapturingPoint = true;
 
+                // open file in append mode
                 FILE* usd_file_write = fopen("/usd/m2pose_poses.txt", "a");
 
+                // if file is valid
                 if (usd_file_write != NULL) {
+                    // f-string
                     fprintf(usd_file_write,
                         "chassis.moveToPose(%f , %f , %f , TIMEOUT);\n",
                         currPoseX,
@@ -121,6 +141,7 @@ void runAdvancedCapturePoint() {
                     fclose(usd_file_write);
                 }
 
+                // to set primitveCapturingPointState returner to false in the switch case
                 advancedCapturePointState = 0;
                 break;
         }
